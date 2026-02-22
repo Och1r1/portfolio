@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Certification on Och1r1</title>
+    <link>http://localhost:1313/tags/certification/</link>
+    <description>Recent content in Certification on Och1r1</description>
+    <generator>Hugo</generator>
+    <language>en</language>
+    <lastBuildDate>Thu, 13 Feb 2025 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/certification/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>How I Passed the AWS Cloud Practitioner Exam</title>
+      <link>http://localhost:1313/blogs/how-i-passed-aws-cloud-practitioner/</link>
+      <pubDate>Thu, 13 Feb 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/blogs/how-i-passed-aws-cloud-practitioner/</guid>
+      <description>&lt;p&gt;I just passed my AWS Cloud Practitioner exam, and I want to share my journey with you. If you&amp;rsquo;re considering taking this exam, hopefully my experience will help you prepare better.&lt;/p&gt;&#xA;&lt;h2 id=&#34;the-failed-first-attempt-sort-of&#34;&gt;The Failed First Attempt (Sort Of)&lt;/h2&gt;&#xA;&lt;p&gt;About a year ago, I tried watching Stephane Maarek&amp;rsquo;s AWS Cloud Practitioner course on Udemy. It felt overwhelming. The concepts weren&amp;rsquo;t clicking, and I ended up abandoning it halfway through. Looking back, I now understand why - I was missing the foundational knowledge.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

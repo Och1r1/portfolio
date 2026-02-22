@@ -1,0 +1,128 @@
+{{ define "head" }}
+<meta name="description" content="Projects - {{ .Site.Title }}">
+<style>
+.project-card {
+    border: none;
+    border-radius: 12px;
+    overflow: hidden;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    background-color: var(--secondary-color);
+}
+.project-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.12);
+}
+.project-card .card-img-top {
+    height: 200px;
+    object-fit: cover;
+    object-position: center top;
+}
+.project-card .card-body {
+    padding: 1.5rem;
+    background-color: var(--secondary-color);
+}
+.project-card .card-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 0.75rem;
+    color: var(--text-color);
+}
+.project-card .card-text {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin-bottom: 1rem;
+    color: var(--text-secondary-color);
+}
+.project-badge {
+    font-size: 0.8rem;
+    padding: 0.35rem 0.65rem;
+    margin-right: 0.5rem;
+    margin-bottom: 0.5rem;
+    border-radius: 4px;
+}
+.project-links a {
+    font-size: 1.25rem;
+    margin-right: 1rem;
+    color: var(--text-secondary-color);
+    transition: color 0.2s;
+}
+.project-links a:hover {
+    color: var(--primary-color);
+}
+/* Dark mode */
+.dark .project-card {
+    background-color: var(--secondary-color-dark);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+}
+.dark .project-card:hover {
+    box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+}
+.dark .project-card .card-body {
+    background-color: var(--secondary-color-dark);
+}
+.dark .project-card .card-title {
+    color: var(--text-color-dark);
+}
+.dark .project-card .card-text {
+    color: var(--text-secondary-color-dark);
+}
+.dark .project-links a {
+    color: var(--text-secondary-color-dark);
+}
+.dark .project-links a:hover {
+    color: var(--primary-color-dark);
+}
+.dark .project-badge {
+    background-color: #374151;
+    color: #e5e7eb;
+}
+</style>
+{{ end }}
+
+{{ define "title" }}
+Projects | {{ .Site.Title }}
+{{ end }}
+
+{{ define "main" }}
+<div class="container pt-5">
+    <h2 class="text-center pb-4">{{ .Title }}</h2>
+
+    {{ if .Params.description }}
+    <p class="text-center text-secondary pb-4">{{ .Params.description }}</p>
+    {{ end }}
+
+    <div class="row justify-content-center">
+        {{ range .Params.projects }}
+        <div class="col-lg-5 col-md-6 col-12 my-4">
+            <div class="card project-card h-100 shadow-sm">
+                {{ if .image }}
+                <img src="{{ .image }}" class="card-img-top" alt="{{ .title }}">
+                {{ end }}
+                <div class="card-body">
+                    <h5 class="card-title">{{ .title }}</h5>
+                    <p class="card-text text-muted">{{ .content }}</p>
+
+                    {{ if .badges }}
+                    <div class="mb-3">
+                        {{ range .badges }}
+                        <span class="badge bg-secondary project-badge">{{ . }}</span>
+                        {{ end }}
+                    </div>
+                    {{ end }}
+
+                    {{ if .links }}
+                    <div class="project-links">
+                        {{ range .links }}
+                        <a href="{{ .url }}" target="_blank" title="{{ .icon }}">
+                            <i class="{{ .icon }}"></i>
+                        </a>
+                        {{ end }}
+                    </div>
+                    {{ end }}
+                </div>
+            </div>
+        </div>
+        {{ end }}
+    </div>
+</div>
+{{ end }}

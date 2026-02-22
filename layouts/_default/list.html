@@ -1,0 +1,99 @@
+{{ define "head" }}
+<meta name="description" content="{{ .Title }} of {{ .Site.Title }}">
+<link rel="stylesheet" href="{{ (printf "%scss/list.css" (.Site.Params.staticPath | default "")) | relURL }}" media="all">
+<style>
+.blog-card {
+    border: none;
+    border-radius: 12px;
+    overflow: hidden;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    cursor: pointer;
+    background-color: var(--secondary-color);
+}
+.blog-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.12);
+}
+.blog-card .card-img-top {
+    height: 180px;
+    object-fit: cover;
+    object-position: center;
+}
+.blog-card .card-body {
+    padding: 1.25rem;
+    background-color: var(--secondary-color);
+}
+.blog-card .card-title {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    line-height: 1.4;
+    color: var(--text-color);
+}
+.blog-card .card-text {
+    font-size: 0.9rem;
+    line-height: 1.5;
+    color: var(--text-secondary-color);
+}
+.blog-date {
+    font-size: 0.8rem;
+    color: var(--text-secondary-color);
+    margin-top: 0.75rem;
+}
+/* Dark mode */
+.dark .blog-card {
+    background-color: var(--secondary-color-dark);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+}
+.dark .blog-card:hover {
+    box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+}
+.dark .blog-card .card-body {
+    background-color: var(--secondary-color-dark);
+}
+.dark .blog-card .card-title {
+    color: var(--text-color-dark);
+}
+.dark .blog-card .card-text {
+    color: var(--text-secondary-color-dark);
+}
+.dark .blog-date {
+    color: var(--text-secondary-color-dark);
+}
+</style>
+{{ end }}
+
+{{ define "title" }}
+{{.Title }} | {{ .Site.Title }}
+{{ end }}
+
+{{ define "main" }}
+<div class="container pt-5" id="list-page">
+    <h2 class="text-center pb-4">{{.Title}}</h2>
+    <div class="row justify-content-center">
+        {{ range .Paginator.Pages }}
+        <div class="col-lg-4 col-md-6 my-3">
+            <a href="{{ .RelPermalink }}" class="text-decoration-none">
+                <div class="card blog-card h-100 shadow-sm">
+                    {{ if and (not (.Site.Params.listPages.disableFeaturedImage | default false)) (.Params.image) }}
+                    <img src="{{ .Params.image }}" class="card-img-top" alt="{{ .Title }}">
+                    {{ end }}
+                    <div class="card-body">
+                        <h5 class="card-title">{{ .Title }}</h5>
+                        <p class="card-text text-muted mb-0">{{ .Params.description | truncate 80 }}</p>
+                        <p class="blog-date mb-0">{{ .Date | time.Format "Jan 2, 2006" }}</p>
+                    </div>
+                </div>
+            </a>
+        </div>
+        {{ end }}
+    </div>
+    {{ if gt .Paginator.TotalPages 1 }}
+    <div class="row justify-content-center">
+        <div class="col-auto mt-4">
+            {{template "_internal/pagination.html" . }}
+        </div>
+    </div>
+    {{ end }}
+</div>
+{{ end }}

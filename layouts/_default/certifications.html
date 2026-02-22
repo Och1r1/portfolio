@@ -1,0 +1,73 @@
+{{ define "head" }}
+<meta name="description" content="Certifications - {{ .Site.Title }}">
+<style>
+.certification-item {
+    max-width: 500px;
+    margin: 0 auto 3rem auto;
+    text-align: center;
+}
+.certification-image {
+    width: 100%;
+    max-width: 450px;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    margin-bottom: 1rem;
+}
+.certification-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: var(--text-color);
+}
+.certification-description {
+    color: var(--text-secondary-color);
+    font-size: 0.95rem;
+}
+/* Dark mode */
+.dark .certification-title {
+    color: var(--text-color-dark);
+}
+.dark .certification-description {
+    color: var(--text-secondary-color-dark);
+}
+.dark .certification-image {
+    box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+}
+</style>
+{{ end }}
+
+{{ define "title" }}
+Certifications | {{ .Site.Title }}
+{{ end }}
+
+{{ define "main" }}
+<div class="container pt-5">
+    <h2 class="text-center pb-4">{{ .Title }}</h2>
+
+    {{ if .Params.description }}
+    <p class="text-center text-secondary pb-4">{{ .Params.description }}</p>
+    {{ end }}
+
+    <div class="row justify-content-center">
+        {{ range .Params.certifications }}
+        <div class="col-lg-6 col-md-8 col-12 my-4">
+            <div class="certification-item">
+                {{ if .image }}
+                <a href="{{ .image }}" target="_blank">
+                    <img src="{{ .image }}" alt="{{ .title }}" class="certification-image">
+                </a>
+                {{ end }}
+                <h4 class="certification-title">{{ .title }}</h4>
+                {{ if .content }}
+                <p class="certification-description">{{ .content }}</p>
+                {{ end }}
+                {{ if .url }}
+                <a href="{{ .url }}" target="_blank" class="btn btn-outline-primary btn-sm mt-2">Verify</a>
+                {{ end }}
+            </div>
+        </div>
+        {{ end }}
+    </div>
+</div>
+{{ end }}
