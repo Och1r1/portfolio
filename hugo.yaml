@@ -1,4 +1,6 @@
 baseURL: "https://och1r1.github.io/portfolio/"
+relativeURLs: true
+canonifyURLs: true
 languageCode: "en-us"
 title: "Och1r1"
 theme: hugo-profile
